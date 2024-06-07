@@ -40,7 +40,7 @@ header h1 {
     color: var(--main-color);
     font-family: Impact, sans-serif;
     text-transform: uppercase;
-    font-size: 5rem;
+    font-size: 6rem;
     letter-spacing: 0.1rem;
     text-align: center;
     margin: 0 auto 1rem;
@@ -77,8 +77,7 @@ header h2 {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 30rem;
-    max-width: 50%;
+    gap: 4rem;
 }
 
 .social-media i {
@@ -96,21 +95,37 @@ main {
     gap: 3rem;
 }
 
-.article-body {
-    height: 50rem;  
+.article-body p:first-of-type:first-letter {
+    color: var(--main-color);
+    font-size: 4rem;
+    float: left;
+    margin-right: 1rem;
 }
 
-.article-body, .history-body {
+.article-body p:first-of-type:first-letter::after {
+    clear: both;
+}
+
+.article-body {
+    text-align: justify;
+    column-width: 20rem;
+    column-gap: 2rem;
+}
+
+.article-body p {
+    margin-bottom: 1rem;
+}
+
+.article-body p:last-of-type {
+    margin-bottom: unset;
+}
+
+.history-body {
     display: grid;
-    grid-template-columns: repeat(3, minmax(2rem, 1fr));
+    grid-template-columns: 1fr 2fr;
+    column-gap: 2rem;
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
-    justify-content: space-evenly;
-    align-content: space-evenly;
-}
-
-.img-one, .img-three {
-    grid-column: 2 / 4;
 }
 
 main blockquote {
@@ -118,28 +133,47 @@ main blockquote {
     color: var(--secondary-color);
     font-style: italic;
     padding: 1rem;
+    margin: 1rem 0;
     border-top: 0.2rem solid var(--secondary-color);
     border-bottom: 0.2rem solid var(--secondary-color);
 }
 
-.history h2, .history h3 {
+main blockquote::before, main blockquote::after {
+    content: '"'
+  }
+
+.brief-history h2, .brief-history h3 {
     color: var(--secondary-color);
 }
 
-.history h2 {
+.brief-history h2 {
     font-size: 1.5rem;
 }
 
-.history .subheader {
+.brief-history .subheader {
     margin-bottom: 2rem;
 }
 
-.history h3 {
+.brief-history h3 {
     font-size: 1rem;
     margin-top: 1rem;
 }
 
-.history
+.brief-history ul {
+    list-style-type: none;
+}
+
+.history-body aside {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(3, min-content);
+    gap: 2rem;
+    place-items: center;
+}
+
+.img-one, .img-three {
+    grid-column: 1 / -1;
+}
 
 footer div {
     width: 100%;
@@ -147,4 +181,45 @@ footer div {
     position: fixed;
     bottom: 0;
     background-color: var(--third-color);
+}
+
+@media only screen and (max-width: 720px) {
+    .history-body aside {
+      grid-template-columns: 1fr;
+    }
+
+    .social-media {
+        gap: 2.5rem;
+    }
+}
+  
+@media only screen and (max-width: 600px) {
+    .history-body {
+        display: block;
+    }
+
+    .brief-history {
+        margin-bottom: 1rem;
+    }
+
+    .social-media {
+        gap: 2rem;
+    }
+
+    header h1 {
+        font-size: 5rem;
+    }
+
+}
+
+@media only screen and (max-width: 550px) {
+    .social-media {
+        gap: 1rem;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .text-with-images {
+        grid-template-columns: 1fr;
+    }
 }
